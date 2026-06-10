@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Double Bagel | Eliminate the Logistics Tax of Team Tennis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #01261f;
+      --on-primary: #ffffff;
+      --primary-container: #1a3c34;
+      --primary-fixed: #c5eadf;
+      --primary-fixed-dim: #aacec3;
+      --secondary: #8e4e11;
+      --secondary-container: #fda865;
+      --on-secondary-container: #753c00;
+      --tertiary: #361812;
+      --tertiary-fixed-dim: #efbab0;
+      --background: #fcf9f8;
+      --on-background: #1b1c1c;
+      --on-surface: #1b1c1c;
+      --on-surface-variant: #414846;
+      --surface: #fcf9f8;
+      --surface-container: #f0eded;
+      --surface-container-low: #f6f3f2;
+      --outline: #717976;
+      --outline-variant: #c1c8c4;
+      --error: #ba1a1a;
+      --container-max: 1280px;
+      --gutter: 24px;
+      --margin-mobile: 16px;
+      --margin-desktop: 40px;
+      --radius-sm: 0.25rem;
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
+      --radius-xl: 1.5rem;
+      --radius-2xl: 1.5rem;
+      --radius-3xl: 1.5rem;
+      --radius-pill: 9999px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Hanken Grotesk", system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 24px;
+      color: var(--on-background);
+      background: var(--background);
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: var(--secondary-container);
+      color: var(--on-secondary-container);
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+
+    .material-symbols-outlined {
+      font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      vertical-align: middle;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--margin-mobile);
+    }
+
+    @media (min-width: 768px) {
+      .container { padding-inline: var(--margin-desktop); }
+    }
+
+    /* Typography */
+    .display {
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .headline-lg {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      line-height: 1.25;
+      font-weight: 700;
+    }
+
+    .headline-md {
+      font-size: clamp(1.125rem, 2vw, 1.5rem);
+      line-height: 1.33;
+      font-weight: 600;
+    }
+
+    .body-lg {
+      font-size: 1.125rem;
+      line-height: 1.55;
+      font-weight: 400;
+    }
+
+    .body-md { font-size: 1rem; line-height: 1.5; }
+
+    .label-caps {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.75rem;
+      line-height: 1.33;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .text-primary { color: var(--primary); }
+    .text-secondary { color: var(--secondary); }
+    .text-muted { color: var(--on-surface-variant); }
+    .text-on-primary { color: var(--on-primary); }
+    .text-on-primary-dim { color: var(--primary-fixed-dim); }
+
+    /* Nav */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: rgba(252, 249, 248, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--outline-variant);
+    }
+
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-block: 1rem;
+    }
+
+    .nav__brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .nav__logo {
+      height: 2.5rem;
+      width: auto;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .nav__brand:hover .nav__logo {
+      transform: rotate(15deg) scale(1.1);
+    }
+
+    /* Main offset for fixed nav */
+    main { padding-top: 5.5rem; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      border-radius: var(--radius-lg);
+      font-size: clamp(1.125rem, 2vw, 1.5rem);
+      font-weight: 600;
+      line-height: 1.33;
+      border: none;
+      cursor: default;
+      transition: background 0.2s, border-color 0.2s;
+      text-decoration: none;
+      font-family: inherit;
+    }
+
+    .btn--primary {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+
+    .btn--primary:hover { background: var(--primary-container); }
+
+    .btn--outline {
+      background: transparent;
+      color: var(--on-primary);
+      border: 2px solid var(--on-primary);
+      border-radius: var(--radius-2xl);
+      padding: 1.25rem 2.5rem;
+    }
+
+    .btn--outline:hover { background: rgba(255, 255, 255, 0.1); }
+
+    /* Badge */
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 1rem;
+      border-radius: var(--radius-pill);
+      background: var(--secondary-container);
+      color: var(--on-secondary-container);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.1em;
+    }
+
+    .badge--live {
+      background: var(--secondary);
+      color: var(--on-primary);
+      padding: 0.25rem 0.75rem;
+      margin-bottom: 0;
+      font-size: 0.75rem;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      padding-block: 5rem 3rem;
+      overflow: hidden;
+    }
+
+    @media (min-width: 1024px) {
+      .hero { padding-block: 8rem 4rem; }
+    }
+
+    .hero__grid {
+      display: grid;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    @media (min-width: 1024px) {
+      .hero__grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .hero__title { margin-bottom: 1.5rem; }
+    .hero__title em { font-style: italic; }
+    .hero__desc { margin-bottom: 2.5rem; max-width: 36rem; }
+
+    .hero__actions {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .hero__actions { flex-direction: row; }
+    }
+
+    .hero__visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 320px;
+    }
+
+    @media (min-width: 1024px) {
+      .hero__visual { min-height: 600px; }
+    }
+
+    .hero__visual-bg {
+      position: absolute;
+      inset: 0;
+      background: rgba(26, 60, 52, 0.05);
+      border-radius: 2.5rem;
+      transform: rotate(3deg);
+      z-index: -1;
+    }
+
+    .hero__card {
+      position: relative;
+      background: #fff;
+      padding: 1rem;
+      border-radius: var(--radius-3xl);
+      box-shadow: 0 25px 50px -12px rgba(1, 38, 31, 0.15);
+      border: 1px solid var(--outline-variant);
+      width: 100%;
+      max-width: 32rem;
+      overflow: hidden;
+    }
+
+    .hero__card-header {
+      background: var(--primary);
+      color: var(--on-primary);
+      padding: 1.5rem;
+      border-radius: var(--radius-xl);
+      margin-bottom: 1rem;
+    }
+
+    .hero__card-header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .hero__lineup { display: flex; flex-direction: column; gap: 1rem; }
+
+    .hero__lineup-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 0.75rem;
+      border-radius: var(--radius-md);
+      gap: 0.5rem;
+    }
+
+    .hero__lineup-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      min-width: 0;
+    }
+
+    .hero__lineup-left span {
+      font-size: 0.9rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .avatar {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .avatar--secondary {
+      background: var(--secondary-container);
+      color: var(--on-secondary-container);
+    }
+
+    .avatar--primary-dim {
+      background: var(--primary-fixed-dim);
+      color: var(--primary);
+    }
+
+    .hero__card-img {
+      width: 100%;
+      height: 12rem;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+    }
+
+    .hero__glow {
+      position: absolute;
+      right: -5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 24rem;
+      height: 24rem;
+      background: rgba(253, 168, 101, 0.1);
+      filter: blur(120px);
+      border-radius: 50%;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    /* Section shared */
+    .section { padding-block: 5rem; }
+
+    .section-header {
+      text-align: center;
+      max-width: 42rem;
+      margin-inline: auto;
+      margin-bottom: 4rem;
+    }
+
+    .section-header h2 { margin-bottom: 1rem; }
+
+    /* Features bento */
+    .features { background: var(--surface-container-low); }
+
+    .bento {
+      display: grid;
+      gap: var(--gutter);
+    }
+
+    @media (min-width: 768px) {
+      .bento { grid-template-columns: repeat(12, 1fr); }
+    }
+
+    .bento__main {
+      background: #fff;
+      border-radius: var(--radius-3xl);
+      padding: 2rem;
+      border: 1px solid rgba(193, 200, 196, 0.3);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+      .bento__main { grid-column: span 8; }
+    }
+
+    .bento__main .material-symbols-outlined {
+      font-size: 2.25rem;
+      color: var(--secondary);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .bento__main h3 { margin-bottom: 1rem; }
+
+    .event-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .event-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .event-card {
+      background: var(--surface-container);
+      padding: 1rem;
+      border-radius: var(--radius-lg);
+      border-left: 4px solid var(--primary);
+    }
+
+    .event-card--secondary { border-left-color: var(--secondary); }
+
+    .event-card .label-caps {
+      color: var(--secondary);
+      margin-bottom: 0.25rem;
+    }
+
+    .event-card p:first-of-type { font-weight: 700; margin-bottom: 0.25rem; }
+    .event-card p:last-child { font-size: 0.875rem; color: var(--on-surface-variant); }
+
+    .bento__decor {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 16rem;
+      height: 16rem;
+      opacity: 0.05;
+      pointer-events: none;
+      transform: translate(2.5rem, 2.5rem);
+      transition: transform 0.7s;
+    }
+
+    .bento__main:hover .bento__decor { transform: translate(0, 0); }
+
+    .bento__decor svg {
+      width: 100%;
+      height: 100%;
+      stroke: var(--primary);
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .bento__side {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-radius: var(--radius-3xl);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      position: relative;
+    }
+
+    @media (min-width: 768px) {
+      .bento__side { grid-column: span 4; }
+    }
+
+    .bento__side h3 { margin-bottom: 1.5rem; }
+
+    .headache-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .headache-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.875rem;
+      opacity: 0.9;
+    }
+
+    .headache-list .material-symbols-outlined {
+      color: var(--secondary-container);
+      flex-shrink: 0;
+    }
+
+    .bento__side-icon {
+      position: absolute;
+      right: -2rem;
+      bottom: -2rem;
+      opacity: 0.1;
+      font-size: 10rem;
+      font-variation-settings: "FILL" 1;
+      pointer-events: none;
+    }
+
+    /* DNA section */
+    .dna {
+      background-image: radial-gradient(circle at 1px 1px, rgba(1, 38, 31, 0.05) 1px, transparent 0);
+      background-size: 32px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dna__grid {
+      display: grid;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    @media (min-width: 1024px) {
+      .dna__grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+      }
+    }
+
+    .dna__cards-wrap { order: 2; }
+
+    @media (min-width: 1024px) {
+      .dna__cards-wrap { order: 1; }
+      .dna__content { order: 2; }
+    }
+
+    .dna__cards {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .dna-card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: var(--radius-xl);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--outline-variant);
+      transition: transform 0.3s;
+    }
+
+    .dna-card:hover { transform: rotate(0deg) !important; }
+    .dna-card--tilt-r { transform: rotate(1deg); }
+    .dna-card--tilt-l { transform: rotate(-2deg); margin-top: 2rem; }
+
+    .dna-card__header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .dna-card__icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--on-primary);
+      flex-shrink: 0;
+    }
+
+    .dna-card__icon--primary { background: var(--primary); }
+    .dna-card__icon--tertiary { background: var(--tertiary); }
+
+    .dna-card__icon .material-symbols-outlined { font-size: 1.125rem; }
+
+    .dna-card p { font-size: 0.875rem; color: var(--on-surface-variant); }
+
+    .dna__ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 12rem;
+      height: 12rem;
+      border: 2px dashed rgba(1, 38, 31, 0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+      animation: spin-slow 8s linear infinite;
+    }
+
+    @keyframes spin-slow {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    .dna__content .label-caps {
+      color: var(--secondary);
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .dna__content h2 { margin-bottom: 1.5rem; }
+    .dna__content > p { margin-bottom: 2rem; }
+
+    .check-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .check-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .check-list .material-symbols-outlined {
+      color: var(--secondary);
+      margin-top: 0.15rem;
+      flex-shrink: 0;
+    }
+
+    .check-list p { font-weight: 700; }
+
+    /* Team experience */
+    .experience { background: #fff; }
+
+    .experience__header {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+      max-width: 36rem;
+    }
+
+    @media (min-width: 768px) {
+      .experience__header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+        max-width: none;
+      }
+    }
+
+    .feature-grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 1024px) {
+      .feature-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .feature-card {
+      padding: 2rem;
+      border-radius: var(--radius-3xl);
+      background: var(--surface-container-low);
+      border: 1px solid rgba(193, 200, 196, 0.3);
+      transition: border-color 0.2s;
+    }
+
+    .feature-card:hover { border-color: var(--secondary); }
+
+    .feature-card__icon {
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: var(--radius-xl);
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      transition: transform 0.2s;
+    }
+
+    .feature-card:hover .feature-card__icon { transform: scale(1.1); }
+
+    .feature-card__icon .material-symbols-outlined {
+      font-size: 1.875rem;
+      color: var(--secondary);
+    }
+
+    .feature-card h3 { margin-bottom: 0.75rem; }
+    .feature-card p { color: var(--on-surface-variant); }
+
+    /* CTA */
+    .cta__box {
+      background: var(--primary);
+      border-radius: 2.5rem;
+      padding: 3rem 1.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+      .cta__box { padding: 5rem 3rem; }
+    }
+
+    .cta__content { position: relative; z-index: 1; }
+
+    .cta__box h2 { margin-bottom: 1.5rem; }
+    .cta__box p { margin-bottom: 2.5rem; max-width: 42rem; margin-inline: auto; }
+
+    .cta__actions {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (min-width: 640px) {
+      .cta__actions { flex-direction: row; }
+    }
+
+    .cta__mesh {
+      position: absolute;
+      inset: 0;
+      opacity: 0.1;
+      pointer-events: none;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--primary);
+      color: var(--on-primary);
+      padding-block: 3rem;
+    }
+
+    .footer__inner {
+      display: flex;
+      flex-direction: column;
+      gap: var(--gutter);
+    }
+
+    @media (min-width: 768px) {
+      .footer__inner {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+    }
+
+    .footer__brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer__logo { height: 2rem; width: auto; }
+
+    .footer p { max-width: 20rem; }
+    .footer__tagline { opacity: 0.7; margin-bottom: 1.5rem; }
+    .footer__copy { opacity: 0.5; font-size: 1rem; }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(2.5rem);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container nav__inner">
+      <a href="#" class="nav__brand">
+        <img
+          class="nav__logo"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqmCUSYsr7nC8rg8eO43LHRGKU7bbcSbpc2qyqx8SmvuYrTr-YIE3SlynX0OukYsIBMGv6bHc3kyHGYSDtBjz1rEh7cxVfPxLww-l5kGK1PH0DiQo8U3ZAgRMHwM6NMKdkGgI2CIqhSxuwkZvqvSjzTumIQ6mMazKY0N2sTtvJlMfNhBzu7H4Itnrr0h9jdx6tn2Iwz9qsdPpm_K4AD-BM2vnpwWuom6eSSxB7U-nCGQWoysJKcv_4VfvN7aq4SPY1lEWapgrWjwk"
+          alt="Double Bagel Logo"
+        >
+        <span class="headline-md text-primary">Double Bagel</span>
+      </a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero__grid reveal">
+        <div>
+          <span class="badge label-caps">Team Tennis Reinvented</span>
+          <h1 class="display text-primary hero__title">
+            Eliminate the <em class="text-secondary">"Logistics Tax"</em> of Team Tennis.
+          </h1>
+          <p class="body-lg text-muted hero__desc">
+            Double Bagel consolidates match scheduling, strategic lineup building, and team logistics into one high-performance interface. Spend more time at the net and less time in group chats.
+          </p>
+          <div class="hero__actions">
+            <button class="btn btn--primary" type="button">Launching in July 2026</button>
+          </div>
+        </div>
+
+        <div class="hero__visual">
+          <div class="hero__visual-bg" aria-hidden="true"></div>
+          <div class="hero__card">
+            <div class="hero__card-header">
+              <div class="hero__card-header-top">
+                <h3 class="headline-md">This Monday &ndash; Mixed 7.5</h3>
+                <span class="badge badge--live label-caps">Live</span>
+              </div>
+              <div class="hero__lineup">
+                <div class="hero__lineup-item">
+                  <div class="hero__lineup-left">
+                    <div class="avatar avatar--secondary">D1</div>
+                    <span>Sam E. and Lisa H.</span>
+                  </div>
+                  <span class="material-symbols-outlined" aria-hidden="true">check_circle</span>
+                </div>
+                <div class="hero__lineup-item">
+                  <div class="hero__lineup-left">
+                    <div class="avatar avatar--primary-dim">D2</div>
+                    <span>Alex C. and Caroline O.</span>
+                  </div>
+                  <span class="material-symbols-outlined" aria-hidden="true">schedule</span>
+                </div>
+              </div>
+            </div>
+            <img
+              class="hero__card-img"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnyzc1-6dZwXL7HagpER4VidOL1BgMl9zossEoaj4aAw7-KDaY7jttKIJfNMSnI4VN2HJGz4z2Om8IqkVRRh3w1OqF93cgjKA7ArSAgnXQEqQXOqF5qqKXoyl4bfndmwbflussd_dsPO_9mdI528C-boaFOwT_YfvhEGjSB_Iat2IuZYx0nUZChGNNHx6OIf6lGlnCBtCfzx2_Fagbtn6CCkNZQCtblKzJ152g8d7EfVdt0ElkTMRqK-XSLzMapofvkGVy5Zb-XeA"
+              alt="Tennis ball on a grass court"
+            >
+          </div>
+        </div>
+      </div>
+      <div class="hero__glow" aria-hidden="true"></div>
+    </section>
+
+    <!-- Features -->
+    <section class="section features" id="features">
+      <div class="container reveal">
+        <div class="section-header">
+          <h2 class="headline-lg text-primary">One Calendar. All Your Teams.</h2>
+          <p class="body-lg text-muted">
+            Say goodbye to app fatigue. We consolidate matches from every league, tournament, and social ladder into a single, unified calendar.
+          </p>
+        </div>
+
+        <div class="bento">
+          <div class="bento__main">
+            <span class="material-symbols-outlined" aria-hidden="true">event_repeat</span>
+            <h3 class="headline-md text-primary">Intelligent Consolidation</h3>
+            <div class="event-grid">
+              <div class="event-card">
+                <p class="label-caps">USTA League</p>
+                <p>Men's 4.0 &ndash; Saturday 9:00 AM</p>
+                <p>Brookhaven Country Club</p>
+              </div>
+              <div class="event-card event-card--secondary">
+                <p class="label-caps">City Ladder</p>
+                <p>Singles Challenge &ndash; Sunday 2:00 PM</p>
+                <p>North Park Courts</p>
+              </div>
+            </div>
+            <div class="bento__decor" aria-hidden="true">
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="10" width="80" height="80"></rect>
+                <line x1="10" y1="50" x2="90" y2="50"></line>
+                <line x1="50" y1="10" x2="50" y2="90"></line>
+              </svg>
+            </div>
+          </div>
+
+          <div class="bento__side">
+            <div>
+              <h3 class="headline-md">Common Headaches</h3>
+              <ul class="headache-list">
+                <li>
+                  <span class="material-symbols-outlined" aria-hidden="true">error</span>
+                  <p>Tired of chasing weekly availability</p>
+                </li>
+                <li>
+                  <span class="material-symbols-outlined" aria-hidden="true">location_off</span>
+                  <p>I drove to the wrong park AGAIN!</p>
+                </li>
+                <li>
+                  <span class="material-symbols-outlined" aria-hidden="true">layers_clear</span>
+                  <p>I'm drowning in three different apps.</p>
+                </li>
+              </ul>
+            </div>
+            <span class="material-symbols-outlined bento__side-icon" aria-hidden="true">sentiment_dissatisfied</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- On-Court DNA -->
+    <section class="section dna" id="captains">
+      <div class="container reveal">
+        <div class="dna__grid">
+          <div class="dna__cards-wrap">
+            <div class="dna__cards">
+              <div class="dna-card dna-card--tilt-r">
+                <div class="dna-card__header">
+                  <div class="dna-card__icon dna-card__icon--primary">
+                    <span class="material-symbols-outlined" aria-hidden="true">psychology</span>
+                  </div>
+                  <h4 class="headline-md">The Net Rusher</h4>
+                </div>
+                <p>Aggressive volleyer with quick reflexes.</p>
+              </div>
+              <div class="dna-card dna-card--tilt-l">
+                <div class="dna-card__header">
+                  <div class="dna-card__icon dna-card__icon--tertiary">
+                    <span class="material-symbols-outlined" aria-hidden="true">directions_run</span>
+                  </div>
+                  <h4 class="headline-md">Baseline Grinder</h4>
+                </div>
+                <p>Consistent heavy hitter from the back of the court.</p>
+              </div>
+              <div class="dna__ring" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <div class="dna__content">
+            <span class="label-caps">Captain Superpowers</span>
+            <h2 class="headline-lg text-primary">Strategic Lineups Based on "On-Court DNA"</h2>
+            <p class="body-lg text-muted">
+              Stop guessing. Double Bagel displays playing styles and court side preferences so that your captain can create the optimal lineup for every match.
+            </p>
+            <ul class="check-list">
+              <li>
+                <span class="material-symbols-outlined" aria-hidden="true">check_circle</span>
+                <p>Deuce vs. Ad Side Preference</p>
+              </li>
+              <li>
+                <span class="material-symbols-outlined" aria-hidden="true">check_circle</span>
+                <p>Net vs. Baseline Preference</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Experience -->
+    <section class="section experience" id="players">
+      <div class="container reveal">
+        <div class="experience__header">
+          <div>
+            <h2 class="headline-lg text-primary">A Better Team Experience.</h2>
+            <p class="body-lg text-muted">
+              We handle the grit so you can focus on the game. Integrated payments and instant communications for the modern athlete.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="feature-card__icon">
+              <span class="material-symbols-outlined" aria-hidden="true">smart_toy</span>
+            </div>
+            <h3 class="headline-md text-primary">Intelligent Automation</h3>
+            <p class="body-md">Automatically prompts players for availability and lineup confirmation, removing the need for manual follow-ups.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-card__icon">
+              <span class="material-symbols-outlined" aria-hidden="true">payments</span>
+            </div>
+            <h3 class="headline-md text-primary">One-Tap Reimbursement</h3>
+            <p class="body-md">Effortless court fee collection with direct Venmo integration. No more chasing down cash after the match.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-card__icon">
+              <span class="material-symbols-outlined" aria-hidden="true">emoji_events</span>
+            </div>
+            <h3 class="headline-md text-primary">Instant Match Feeds</h3>
+            <p class="body-md">Push notifications for live scores and results across all your teams. Celebrate victories as they happen.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-card__icon">
+              <span class="material-symbols-outlined" aria-hidden="true">emergency</span>
+            </div>
+            <h3 class="headline-md text-primary">Sub Safety Net</h3>
+            <p class="body-md">Last minute drop out? Our automated sub-finder alerts available players instantly to fill the gap.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section">
+      <div class="container reveal">
+        <div class="cta__box">
+          <div class="cta__content">
+            <h2 class="display text-on-primary">Ready to Bagel the Competition?</h2>
+            <p class="body-lg text-on-primary-dim">
+              Hand logistics to Double Bagel. Focus on the fun on the court.
+            </p>
+            <div class="cta__actions">
+              <button class="btn btn--outline" type="button">App Store Launch July 2026</button>
+            </div>
+          </div>
+          <svg class="cta__mesh" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <pattern id="tennis-mesh" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M0 20 L40 20 M20 0 L20 40" stroke="white" stroke-width="0.5" fill="none"></path>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#tennis-mesh)"></rect>
+          </svg>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>
+        <div class="footer__brand">
+          <img
+            class="footer__logo"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGGiygBfbF90iIdypqX1psY8Bn87kzmrRsFOVmt09rGtRwrXPtcdwkYX9EBPOebGiNZ-wLJVY_SKQqFzK9fPmxDdvcaW9GJZwhYf26mJGblxPrf0abwep4tnpTJPzM8-wjiVOsUgZIH716aaRPkeYL-uXh9yZ9M3dw6RAxe-DIdZGvjzrKLz-yjKoEjbNGBxDQLRpF_ACO0OowbQD8cE3Kb2DVT7T7oVOJ8sldXppqV0TYszIN6g0LvCITBB4pkgnsaSAY9nzayhE"
+            alt="Double Bagel Logo"
+          >
+          <span class="headline-md">Double Bagel</span>
+        </div>
+        <p class="footer__tagline">A Red Frame Sports production. Engineered for the modern tennis ecosystem.</p>
+        <p class="footer__copy">&copy; 2026 Red Frame Sports. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("is-visible");
+        });
+      },
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+  </script>
+
+</body>
+</html>
