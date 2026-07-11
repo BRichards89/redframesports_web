@@ -129,7 +129,7 @@
       left: 0;
       right: 0;
       z-index: 50;
-      background: rgba(252, 249, 248, 0.85);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--outline-variant);
@@ -801,25 +801,27 @@
       font-size: 1rem;
       line-height: 1.5;
       margin-bottom: 1rem;
+      display: none;
+      padding: 0.875rem 1.25rem;
+      border-radius: var(--radius-md);
     }
 
-    .contact__status:empty { display: none; }
+    .contact__status[data-fs-active] {
+      display: block;
+    }
 
-    .contact__status[data-fs-success]:not(:empty) {
+    .contact__status[data-fs-success] {
       color: var(--primary);
       background: var(--primary-fixed);
-      padding: 0.875rem 1.25rem;
-      border-radius: var(--radius-md);
     }
 
-    .contact__status[data-fs-error]:not(:empty) {
+    .contact__status[data-fs-error] {
       color: var(--error);
       background: #fce8e8;
-      padding: 0.875rem 1.25rem;
-      border-radius: var(--radius-md);
     }
 
-    .contact__field [data-fs-error]:not(:empty) {
+    .contact__field [data-fs-error]:not(:empty),
+    .contact__field-warning:not([hidden]) {
       color: var(--error);
       font-size: 0.875rem;
       line-height: 1.4;
@@ -1188,7 +1190,7 @@
               </p>
             </div>
 
-            <div class="contact__status" data-fs-success></div>
+            <div class="contact__status" data-fs-success>Thanks for reaching out. We'll get back to you within 2 days.</div>
             <div class="contact__status" data-fs-error></div>
 
             <form class="contact__form" id="contact-form">
@@ -1201,6 +1203,7 @@
               <div class="contact__field">
                 <label for="contact-email">Email</label>
                 <input type="email" id="contact-email" name="email" data-fs-field required autocomplete="email">
+                <span class="contact__field-warning" id="contact-email-warning" hidden></span>
                 <span data-fs-error="email"></span>
               </div>
 
@@ -1254,6 +1257,46 @@
     formspree('initForm', { formElement: '#contact-form', formId: 'xlgqrnvy' });
   </script>
   <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+  <script>
+    (function () {
+      const form = document.getElementById('contact-form');
+      const emailInput = document.getElementById('contact-email');
+      const emailWarning = document.getElementById('contact-email-warning');
+      if (!form || !emailInput || !emailWarning) return;
+
+      function validateEmail() {
+        const value = emailInput.value.trim();
+        const missingAt = value.length > 0 && !value.includes('@');
+
+        if (missingAt) {
+          emailInput.setCustomValidity('Please enter a valid email address.');
+          emailInput.setAttribute('aria-invalid', 'true');
+          emailWarning.textContent = 'Please enter a valid email address.';
+          emailWarning.hidden = false;
+          return false;
+        }
+
+        emailInput.setCustomValidity('');
+        if (emailInput.validity.valid) {
+          emailInput.removeAttribute('aria-invalid');
+        }
+        emailWarning.textContent = '';
+        emailWarning.hidden = true;
+        return true;
+      }
+
+      emailInput.addEventListener('input', validateEmail);
+      emailInput.addEventListener('blur', validateEmail);
+      form.addEventListener('submit', (event) => {
+        if (!validateEmail()) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          emailInput.focus();
+        }
+      }, true);
+    })();
+  </script>
 
 </body>
 </html>
